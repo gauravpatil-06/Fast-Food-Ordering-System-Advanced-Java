@@ -1,0 +1,184 @@
+import com.fastfood.delivery.model.RoundedButton;
+import com.fastfood.delivery.model.RoundedTextArea;
+import com.fastfood.delivery.model.RoundedTextField;
+
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
+import java.awt.event.*;
+
+public class LoginPage extends JFrame
+{
+    JLabel L1, L2, L3;
+    RoundedTextField tf1, tf2;
+    RoundedButton b1, b2;
+
+    LoginPage()
+    {
+        Container c = getContentPane();
+        c.setLayout(null);
+
+        Font f1 = new Font("Arial Black", Font.BOLD, 45);
+        Font f2 = new Font("adamina", Font.BOLD, 25);
+        Font f3 = new Font("Arial Black", Font.BOLD, 25);
+
+        ImageIcon icon = new ImageIcon("src/resources/bg_login_page.png");
+        Dimension bg_login_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        Image img = icon.getImage();
+        Image scaledImg = img.getScaledInstance(bg_login_screenSize.width, bg_login_screenSize.height, Image.SCALE_SMOOTH);
+        JLabel background = new JLabel(new ImageIcon(scaledImg));
+        background.setSize(bg_login_screenSize.width, bg_login_screenSize.height);
+        c.add(background);
+
+        ImageIcon imageIcon = new ImageIcon("src/resources/logo_login_page.png");
+        Image image = imageIcon.getImage();
+        Image scaledImage = image.getScaledInstance(250, 250, Image.SCALE_SMOOTH);
+        ImageIcon scaledIcon = new ImageIcon(scaledImage);
+        JLabel imageLabel = new JLabel(scaledIcon);
+
+        L1 = new JLabel("Login Here", JLabel.CENTER);
+        L1.setFont(f1);
+        L1.setForeground(Color.blue);
+
+        ImageIcon user = new ImageIcon("src/resources/logo_username.png");
+        JLabel imageLabel_user = new JLabel(new ImageIcon(user.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+
+        L2 = new JLabel("Username:", JLabel.RIGHT);
+        L2.setFont(f2);
+        L2.setForeground(Color.black);
+
+        tf1 = new RoundedTextField(16);
+        tf1.setFont(f2);
+        tf1.setForeground(Color.black);
+
+        Border tf1_round = BorderFactory.createLineBorder(Color.blue, 1);
+        tf1.setBorder(BorderFactory.createCompoundBorder(tf1_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
+
+        ImageIcon pwd = new ImageIcon("src/resources/logo_password.png");
+        JLabel imageLabel_pwd = new JLabel(new ImageIcon(pwd.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+
+        L3 = new JLabel("Password:", JLabel.RIGHT);
+        L3.setFont(f2);
+        L3.setForeground(Color.black);
+
+        tf2 = new RoundedTextField(16);
+        tf2.setFont(f2);
+        tf2.setForeground(Color.black);
+
+        Border tf2_round = BorderFactory.createLineBorder(Color.blue, 1);
+        tf2.setBorder(BorderFactory.createCompoundBorder(tf2_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
+
+        b1 = new RoundedButton("Login", 20);
+        b1.setFont(f3);
+        b1.setForeground(Color.white);
+        b1.setBackground(Color.blue);
+
+        b2 = new RoundedButton("Sign Up", 20);
+        b2.setFont(f3);
+        b2.setForeground(Color.white);
+        b2.setBackground(Color.blue);
+
+        imageLabel.setBounds(510, -80, 500, 500);
+        L1.setBounds(510, 310, 500, 60);
+
+        imageLabel_user.setBounds(530, 420, 40, 40);
+        L2.setBounds(410, 420, 300, 40);
+        tf1.setBounds(740, 420, 250, 40);
+
+        imageLabel_pwd.setBounds(530, 500, 40, 40);
+        L3.setBounds(410, 500, 300, 40);
+        tf2.setBounds(740, 500, 250, 40);
+
+        b1.setBounds(620, 610, 300, 45);
+        b2.setBounds(620, 690, 300, 45);
+
+        background.add(imageLabel);
+        background.add(L1);
+        background.add(imageLabel_user);
+        background.add(L2);background.add(tf1);
+        background.add(imageLabel_pwd);
+        background.add(L3);background.add(tf2);
+        background.add(b1);
+        background.add(b2);
+
+        // Login button action
+        b1.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                String username = tf1.getText();
+                String password = tf2.getText();
+
+                if (username.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "Username cannot be Empty", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else if (password.isEmpty())
+                {
+                    JOptionPane.showMessageDialog(null, "Password cannot be Empty", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else if (username.length() < 8)
+                {
+                    JOptionPane.showMessageDialog(null, "Username must be at least 8 characters", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else if (password.length() < 8)
+                {
+                    JOptionPane.showMessageDialog(null, "Password must be at least 8 characters", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+                else
+                {
+                    JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+                    new HomePage().setVisible(true);
+                    dispose();
+                }
+            }
+        });
+
+        b2.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                new RegistrationPage().setVisible(true);
+                dispose();
+            }
+        });
+
+        ActionListener actionListener = new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Object source = e.getSource(); // Get the source of the event
+
+                switch (source.getClass().getSimpleName())
+                {
+                    case "RoundedTextField_Login":
+                        if (source == tf1)
+                        {
+                            tf2.requestFocus(); // Move to Password. field
+                        }
+                        else if (source == tf2)
+                        {
+                            b1.doClick(); // Simulate clicking the Login button
+                        }
+                        break;
+                }
+            }
+        };
+
+        tf1.addActionListener(actionListener);
+        tf2.addActionListener(actionListener);
+
+        setTitle("Fast Food Delivery");
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setSize(screenSize.width, screenSize.height);
+    }
+    public static void main(String args[])
+    {
+        LoginPage f1 = new LoginPage();
+        f1.setVisible(true);
+        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+}
