@@ -193,24 +193,5 @@ public class AboutUs extends JPanel
 
         // Set the preferred size of the panel (based on content height)
         setPreferredSize(new Dimension(1500, 1150));
-
-    }
-    public static void main(String[] args)
-    {
-        JFrame f1 = new JFrame("About Us");
-        AboutUs aboutUsPanel = new AboutUs();
-
-        // Create a JScrollPane and add the AboutUs panel to it
-        JScrollPane scrollPane = new JScrollPane(aboutUsPanel);
-        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Smooth scrolling
-
-        // Add the JScrollPane to the JFrame
-        f1.add(scrollPane);
-        f1.setVisible(true);
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        f1.setSize(screenSize.width, screenSize.height);
     }
 }

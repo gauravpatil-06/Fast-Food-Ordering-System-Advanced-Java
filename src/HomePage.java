@@ -14,21 +14,28 @@ public class HomePage extends JFrame
 
         Font f1 = new Font("Arial Black", Font.BOLD, 20);
 
-        JTabbedPane jtp=new JTabbedPane();
+        JTabbedPane jtp = new JTabbedPane();
         jtp.setFont(f1);
 
-        Home home=new Home();
-        OrderHistory orderHistory=new OrderHistory();
-        MyProfile myProfile=new MyProfile();
-        AboutUs aboutUs=new AboutUs();
-        ContactUs contactUs=new ContactUs();
+        Home home = new Home();
+        OrderHistory orderHistory = new OrderHistory();
+        MyProfile myProfile = new MyProfile("Gaurav Patil", "7875335539", "gp949958@gmail.com", "Gaurav123@#$", "Gaurav123@#$");
+        AboutUs aboutUs = new AboutUs();
+        ContactUs contactUs = new ContactUs();
 
-        jtp.addTab("Home",home);
-        jtp.addTab("Order History",orderHistory);
-        jtp.addTab("My Profile",myProfile);
-        jtp.addTab("About Us",aboutUs);
-        jtp.addTab("Contact Us",contactUs);
+        // Create a scroll pane for the AboutUs panel
+        JScrollPane scrollPane = new JScrollPane(aboutUs);
+        scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Smooth scrolling
 
+        // Add tabs to the tabbed pane
+        jtp.addTab("Home", home);
+        jtp.addTab("Order History", orderHistory);
+        jtp.addTab("My Profile", myProfile);
+        jtp.addTab("About Us", scrollPane);  // Add scroll pane for About Us
+        jtp.addTab("Contact Us", contactUs);
+
+        // Set background colors for each tab
         jtp.setBackgroundAt(0, new Color(255, 224, 178)); // Faint Light Orange
         jtp.setForegroundAt(0, Color.black);
 
@@ -47,12 +54,14 @@ public class HomePage extends JFrame
         // Set the Home tab as the default selected tab
         jtp.setSelectedIndex(0);
 
+        // Add the tabbed pane to the container
         c.add(jtp);
 
         setTitle("Fast Food Delivery");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
     }
+
     public static void main(String args[])
     {
         HomePage f1 = new HomePage();

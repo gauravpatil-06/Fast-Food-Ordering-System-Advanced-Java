@@ -1,17 +1,23 @@
 import com.fastfood.delivery.model.RoundedButton;
 import com.fastfood.delivery.model.RoundedTextField;
+import com.fastfood.delivery.ui.MyProfile;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.sql.*;
 
 public class RegistrationPage extends JFrame
 {
     JLabel L1, L2, L3, L4, L5, L6;
     RoundedTextField tf1, tf2, tf3, tf4, tf5;
     RoundedButton b1;
+
+    // Database connection details
+    private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_USER = "system";
+    private static final String DB_PASSWORD = "gaurav";
 
     RegistrationPage()
     {
@@ -170,9 +176,13 @@ public class RegistrationPage extends JFrame
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Registration Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    new HomePage().setVisible(true);
-                    dispose();
+                    boolean success = registerUser(name, mobile_no, email_id, username, password);
+                    if (success)
+                    {
+                        // After successful registration, open the Profile page and pass the details
+                        new MyProfile(name, mobile_no, email_id, username, password);
+                        dispose();
+                    }
                 }
             }
         });
@@ -222,6 +232,35 @@ public class RegistrationPage extends JFrame
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
     }
+
+    // Method to connect to the database and insert user details
+    private boolean registerUser(String name, String mobileNo, String emailId, String username, String password)
+    {
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD))
+        {
+            String query = "INSERT INTO users (name, mobile_no, email_id, username, password) VALUES (?, ?, ?, ?, ?)";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, name);
+            preparedStatement.setString(2, mobileNo);
+            preparedStatement.setString(3, emailId);
+            preparedStatement.setString(4, username);
+            preparedStatement.setString(5, password);
+
+            int rowsInserted = preparedStatement.executeUpdate();
+            if (rowsInserted > 0)
+            {
+                JOptionPane.showMessageDialog(null, "Registered successfully!");
+                return true;  // Indicate success
+            }
+        }
+        catch (SQLException ex)
+        {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error occurred while registering the user.");
+        }
+        return false;  // Indicate failure
+    }
+
     public static void main(String args[])
     {
         RegistrationPage f1 = new RegistrationPage();
