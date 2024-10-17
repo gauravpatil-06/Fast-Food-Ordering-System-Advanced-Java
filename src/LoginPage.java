@@ -1,17 +1,22 @@
 import com.fastfood.delivery.model.RoundedButton;
-import com.fastfood.delivery.model.RoundedTextArea;
 import com.fastfood.delivery.model.RoundedTextField;
 
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
 import java.awt.event.*;
+import java.sql.*;
 
 public class LoginPage extends JFrame
 {
     JLabel L1, L2, L3;
     RoundedTextField tf1, tf2;
     RoundedButton b1, b2;
+
+    // Database connection details
+    private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_USER = "system";
+    private static final String DB_PASSWORD = "gaurav";
 
     LoginPage()
     {
@@ -49,7 +54,6 @@ public class LoginPage extends JFrame
 
         tf1 = new RoundedTextField(16);
         tf1.setFont(f2);
-        tf1.setForeground(Color.black);
 
         Border tf1_round = BorderFactory.createLineBorder(Color.blue, 1);
         tf1.setBorder(BorderFactory.createCompoundBorder(tf1_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
@@ -63,7 +67,6 @@ public class LoginPage extends JFrame
 
         tf2 = new RoundedTextField(16);
         tf2.setFont(f2);
-        tf2.setForeground(Color.black);
 
         Border tf2_round = BorderFactory.createLineBorder(Color.blue, 1);
         tf2.setBorder(BorderFactory.createCompoundBorder(tf2_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
@@ -128,9 +131,16 @@ public class LoginPage extends JFrame
                 }
                 else
                 {
-                    JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                    new HomePage().setVisible(true);
-                    dispose();
+                    // Validate login credentials
+                    if (validateLogin(username, password))
+                    {
+                        JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
+                        new HomePage().setVisible(true);
+                        dispose();
+                    } else
+                    {
+                        JOptionPane.showMessageDialog(null, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
             }
         });
@@ -174,6 +184,23 @@ public class LoginPage extends JFrame
         setTitle("Fast Food Delivery");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
+    }
+
+    // Method to validate the user login against the database
+    private boolean validateLogin(String username, String password) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+            String query = "SELECT * FROM users WHERE username = ? AND password = ?";
+            PreparedStatement preparedStatement = conn.prepareStatement(query);
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+            return resultSet.next(); // returns true if a matching record is found
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Error occurred while validating user credentials.");
+            return false;
+        }
     }
     public static void main(String args[])
     {

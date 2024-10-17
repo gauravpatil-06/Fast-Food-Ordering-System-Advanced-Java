@@ -47,6 +47,7 @@ public class RegistrationPage extends JFrame
         JLabel imageLabel_name = new JLabel(new ImageIcon(name.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L2 = new JLabel("Name:", JLabel.CENTER);
         L2.setFont(f2);
+        L2.setForeground(Color.black);
         tf1 = new RoundedTextField(16);
         tf1.setFont(f2);
         Border tf1_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -57,6 +58,7 @@ public class RegistrationPage extends JFrame
         JLabel imageLabel_mobile_no = new JLabel(new ImageIcon(mobile_no.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L3 = new JLabel("Mobile No:", JLabel.CENTER);
         L3.setFont(f2);
+        L3.setForeground(Color.black);
         tf2 = new RoundedTextField(16);
         tf2.setFont(f2);
         Border tf2_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -67,6 +69,7 @@ public class RegistrationPage extends JFrame
         JLabel imageLabel_email_id = new JLabel(new ImageIcon(email_id.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L4 = new JLabel("Email ID:", JLabel.CENTER);
         L4.setFont(f2);
+        L4.setForeground(Color.black);
         tf3 = new RoundedTextField(16);
         tf3.setFont(f2);
         Border tf3_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -77,6 +80,7 @@ public class RegistrationPage extends JFrame
         JLabel imageLabel_user = new JLabel(new ImageIcon(user.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L5 = new JLabel("Username:", JLabel.CENTER);
         L5.setFont(f2);
+        L5.setForeground(Color.black);
         tf4 = new RoundedTextField(16);
         tf4.setFont(f2);
         Border tf4_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -87,6 +91,7 @@ public class RegistrationPage extends JFrame
         JLabel imageLabel_pwd = new JLabel(new ImageIcon(pwd.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L6 = new JLabel("Password:", JLabel.CENTER);
         L6.setFont(f2);
+        L6.setForeground(Color.black);
         tf5 = new RoundedTextField(16);
         tf5.setFont(f2);
         Border tf5_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -180,7 +185,8 @@ public class RegistrationPage extends JFrame
                     if (success)
                     {
                         // After successful registration, open the Profile page and pass the details
-                        new MyProfile(name, mobile_no, email_id, username, password);
+                        new MyProfile(name, mobile_no, email_id, username, password).setVisible(true);
+                        new HomePage().setVisible(true);
                         dispose();
                     }
                 }
@@ -229,6 +235,7 @@ public class RegistrationPage extends JFrame
         tf5.addActionListener(actionListener);
 
         setTitle("Fast Food Delivery");
+
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
     }
@@ -249,14 +256,14 @@ public class RegistrationPage extends JFrame
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0)
             {
-                JOptionPane.showMessageDialog(null, "Registered successfully!");
+                JOptionPane.showMessageDialog(null, "Registration successfully!!!");
                 return true;  // Indicate success
             }
         }
         catch (SQLException ex)
         {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(null, "Error occurred while registering the user.");
+            JOptionPane.showMessageDialog(null, "Error occurred while registering the user", "Error", JOptionPane.ERROR_MESSAGE);
         }
         return false;  // Indicate failure
     }

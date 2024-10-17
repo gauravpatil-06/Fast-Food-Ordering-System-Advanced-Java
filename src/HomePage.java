@@ -19,7 +19,7 @@ public class HomePage extends JFrame
 
         Home home = new Home();
         OrderHistory orderHistory = new OrderHistory();
-        MyProfile myProfile = new MyProfile("Gaurav Patil", "7875335539", "gp949958@gmail.com", "Gaurav123@#$", "Gaurav123@#$");
+        MyProfile myProfile = new MyProfile("Gaurav Patil", "7875335539", "gp949958@gmail.com", "Gaurav123", "Gaurav123");
         AboutUs aboutUs = new AboutUs();
         ContactUs contactUs = new ContactUs();
 
@@ -61,7 +61,6 @@ public class HomePage extends JFrame
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
     }
-
     public static void main(String args[])
     {
         HomePage f1 = new HomePage();

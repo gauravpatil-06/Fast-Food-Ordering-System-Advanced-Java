@@ -42,6 +42,7 @@ public class MyProfile extends JPanel
         JLabel imageLabel_name = new JLabel(new ImageIcon(name_icon.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L2 = new JLabel("Name:", JLabel.CENTER);
         L2.setFont(f2);
+        L2.setForeground(Color.black);
         tf1 = new RoundedTextField(16);
         tf1.setFont(f2);
         Border tf1_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -52,6 +53,7 @@ public class MyProfile extends JPanel
         JLabel imageLabel_mobile_no = new JLabel(new ImageIcon(mobile_no.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L3 = new JLabel("Mobile No:", JLabel.CENTER);
         L3.setFont(f2);
+        L3.setForeground(Color.black);
         tf2 = new RoundedTextField(16);
         tf2.setFont(f2);
         Border tf2_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -62,6 +64,7 @@ public class MyProfile extends JPanel
         JLabel imageLabel_email_id = new JLabel(new ImageIcon(email_id.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L4 = new JLabel("Email ID:", JLabel.CENTER);
         L4.setFont(f2);
+        L4.setForeground(Color.black);
         tf3 = new RoundedTextField(16);
         tf3.setFont(f2);
         Border tf3_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -72,6 +75,7 @@ public class MyProfile extends JPanel
         JLabel imageLabel_user = new JLabel(new ImageIcon(user.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L5 = new JLabel("Username:", JLabel.CENTER);
         L5.setFont(f2);
+        L5.setForeground(Color.black);
         tf4 = new RoundedTextField(16);
         tf4.setFont(f2);
         Border tf4_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -82,6 +86,7 @@ public class MyProfile extends JPanel
         JLabel imageLabel_pwd = new JLabel(new ImageIcon(pwd.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
         L6 = new JLabel("Password:", JLabel.CENTER);
         L6.setFont(f2);
+        L6.setForeground(Color.black);
         tf5 = new RoundedTextField(16);
         tf5.setFont(f2);
         Border tf5_round = BorderFactory.createLineBorder(Color.blue, 1);
@@ -138,11 +143,11 @@ public class MyProfile extends JPanel
         b1.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                String name = L2.getText();
-                String mobile = L3.getText();
-                String email = L4.getText();
-                String username = L5.getText();
-                String password = L6.getText();
+                String name = tf1.getText();
+                String mobile = tf2.getText();
+                String email = tf3.getText();
+                String username = tf4.getText();
+                String password = tf5.getText();
 
                 // Show message dialog on submission
                 JOptionPane.showMessageDialog(null, "Profile Save Submitted!");
@@ -150,11 +155,11 @@ public class MyProfile extends JPanel
         });
 
         // Populate the text fields with provided user details
-        L1.setText(name);
-        L2.setText(mobileNo);
-        L3.setText(emailId);
-        L4.setText(username);
-        L5.setText(password);
+        tf1.setText(name);
+        tf2.setText(mobileNo);
+        tf3.setText(emailId);
+        tf4.setText(username);
+        tf5.setText(password);
 
         b2.addActionListener(new ActionListener()
         {
@@ -208,6 +213,7 @@ public class MyProfile extends JPanel
         add(b1);
         add(b2);
         add(b3);
+
     }
 
     // Method to create a rounded profile picture
