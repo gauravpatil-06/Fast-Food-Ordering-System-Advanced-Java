@@ -13,7 +13,6 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
-import java.sql.*;
 
 public class MyProfile extends JPanel
 {
@@ -33,7 +32,7 @@ public class MyProfile extends JPanel
         Font f3 = new Font("Arial Black", Font.BOLD, 25);
 
         // Title
-        L1 = new JLabel("     My Profile", JLabel.CENTER);
+        L1 = new JLabel("My Profile", JLabel.CENTER);
         L1.setFont(f1);
         L1.setForeground(Color.blue);
 
@@ -140,9 +139,11 @@ public class MyProfile extends JPanel
         b3.setBounds(940, 660, 300, 50);
 
         // Add submit action
-        b1.addActionListener(new ActionListener() {
+        b1.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 String name = tf1.getText();
                 String mobile = tf2.getText();
                 String email = tf3.getText();
@@ -150,7 +151,7 @@ public class MyProfile extends JPanel
                 String password = tf5.getText();
 
                 // Show message dialog on submission
-                JOptionPane.showMessageDialog(null, "Profile Save Submitted!");
+                JOptionPane.showMessageDialog(null, "Profile Save successfully!!!");
             }
         });
 

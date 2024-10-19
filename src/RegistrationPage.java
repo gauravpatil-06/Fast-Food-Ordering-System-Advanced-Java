@@ -1,6 +1,5 @@
 import com.fastfood.delivery.model.RoundedButton;
 import com.fastfood.delivery.model.RoundedTextField;
-import com.fastfood.delivery.ui.MyProfile;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -184,10 +183,10 @@ public class RegistrationPage extends JFrame
                     boolean success = registerUser(name, mobile_no, email_id, username, password);
                     if (success)
                     {
-                        // After successful registration, open the Profile page and pass the details
-                        new MyProfile(name, mobile_no, email_id, username, password).setVisible(true);
-                        new HomePage().setVisible(true);
-                        dispose();
+                        // After successful registration, open HomePage with the registered username
+                        HomePage homePage = new HomePage(username);  // Pass the registered username
+                        homePage.setVisible(true);
+                        dispose();  // Close the registration page
                     }
                 }
             }

@@ -135,7 +135,7 @@ public class LoginPage extends JFrame
                     if (validateLogin(username, password))
                     {
                         JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
-                        new HomePage().setVisible(true);
+                        new HomePage(username).setVisible(true);
                         dispose();
                     } else
                     {
