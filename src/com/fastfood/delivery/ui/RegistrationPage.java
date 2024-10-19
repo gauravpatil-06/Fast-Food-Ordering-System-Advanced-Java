@@ -1,3 +1,5 @@
+package com.fastfood.delivery.ui;
+
 import com.fastfood.delivery.model.RoundedButton;
 import com.fastfood.delivery.model.RoundedTextField;
 
@@ -36,10 +38,13 @@ public class RegistrationPage extends JFrame
         background.setSize(bg_login_screenSize.width, bg_login_screenSize.height);
         c.add(background);
 
+        ImageIcon back = new ImageIcon("src/resources/icon_back.png");
+        JLabel imageLabel_back = new JLabel(new ImageIcon(back.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
+
         // Title
         L1 = new JLabel("Register Here", JLabel.CENTER);
         L1.setFont(f1);
-        L1.setForeground(Color.blue);
+        L1.setForeground(new Color(0, 0, 175));
 
         // Name
         ImageIcon name = new ImageIcon("src/resources/logo_name.png");
@@ -102,6 +107,8 @@ public class RegistrationPage extends JFrame
         b1.setBackground(Color.blue);
 
         // Set bounds for components
+        imageLabel_back.setBounds(10, 10, 40, 40);
+
         L1.setBounds(150, 80, 500, 60);
 
         imageLabel_name.setBounds(135, 220, 40, 40);
@@ -127,6 +134,7 @@ public class RegistrationPage extends JFrame
         b1.setBounds(270, 650, 300, 50);
 
         // Add components to the background
+        background.add(imageLabel_back);
         background.add(L1);
         background.add(imageLabel_name); background.add(L2); background.add(tf1);
         background.add(imageLabel_mobile_no); background.add(L3); background.add(tf2);
@@ -134,6 +142,16 @@ public class RegistrationPage extends JFrame
         background.add(imageLabel_user); background.add(L5); background.add(tf4);
         background.add(imageLabel_pwd); background.add(L6); background.add(tf5);
         background.add(b1);
+
+        imageLabel_back.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent e)
+            {
+                new LoginPage().setVisible(true);
+                dispose();
+            }
+        });
 
         b1.addActionListener(new ActionListener()
         {

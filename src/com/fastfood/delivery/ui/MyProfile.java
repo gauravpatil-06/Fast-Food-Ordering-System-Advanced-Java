@@ -13,17 +13,26 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.imageio.ImageIO;
+import java.sql.*;
 
 public class MyProfile extends JPanel
 {
+    private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
+    private static final String DB_USER = "system";
+    private static final String DB_PASSWORD = "gaurav";
+
     JLabel L1, L2, L3, L4, L5, L6;
     RoundedTextField tf1, tf2, tf3, tf4, tf5;
     RoundedButton b1, b2, b3;
     ImageIcon profile;
 
-    // Constructor now takes user details as parameters
+    private String currentUsername;  // Stores the current username for database update
+
+    // Constructor takes user details as parameters
    public MyProfile(String name, String mobileNo, String emailId, String username, String password)
     {
+        this.currentUsername = username;  // Store the username
+
         setLayout(null);
         setBackground(new Color(224, 255, 255));
 
@@ -144,14 +153,22 @@ public class MyProfile extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                String name = tf1.getText();
-                String mobile = tf2.getText();
-                String email = tf3.getText();
-                String username = tf4.getText();
-                String password = tf5.getText();
+                // Capture the updated information from the text fields
+                String updatedName = tf1.getText();
+                String updatedMobile = tf2.getText();
+                String updatedEmail = tf3.getText();
+                String updatedPassword = tf5.getText();
 
-                // Show message dialog on submission
-                JOptionPane.showMessageDialog(null, "Profile Save successfully!!!");
+                // Call method to update the user data in the database
+                boolean isUpdated = updateUserData(updatedName, updatedMobile, updatedEmail, updatedPassword);
+
+                if (isUpdated)
+                {
+                    JOptionPane.showMessageDialog(null, "Profile Updated Successfully!");
+                } else
+                {
+                    JOptionPane.showMessageDialog(null, "Failed to Update Profile!", "Error", JOptionPane.ERROR_MESSAGE);
+                }
             }
         });
 
@@ -217,6 +234,8 @@ public class MyProfile extends JPanel
 
     }
 
+
+
     // Method to create a rounded profile picture
     public ImageIcon getRoundedProfilePic(ImageIcon icon, int width, int height)
     {
@@ -236,5 +255,32 @@ public class MyProfile extends JPanel
         g2.dispose();
 
         return new ImageIcon(bufferedImage);
+    }
+
+    // Method to update the user data in the database
+    private boolean updateUserData(String name, String mobileNo, String emailId, String password)
+    {
+        boolean isUpdated = false;
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD))
+        {
+            String query = "UPDATE users SET name = ?, mobile_no = ?, email_id = ?, password = ? WHERE username = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, name);
+            stmt.setString(2, mobileNo);
+            stmt.setString(3, emailId);
+            stmt.setString(4, password);
+            stmt.setString(5, currentUsername);  // Use the stored username for WHERE clause
+
+            int rowsUpdated = stmt.executeUpdate();
+            if (rowsUpdated > 0)
+            {
+                isUpdated = true;  // Update was successful
+            }
+        }
+        catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+        return isUpdated;
     }
 }

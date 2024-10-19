@@ -1,3 +1,5 @@
+package com.fastfood.delivery.ui;
+
 import javax.swing.*;
 import java.awt.*;
 import java.util.TimerTask;
@@ -30,15 +32,15 @@ class SplashScreen extends JFrame
 
         L1 = new JLabel("Fast Food Delivery");
         L1.setFont(f1);
-        L1.setForeground(Color.black);
+        L1.setForeground(new Color(220, 60, 0));
 
         L2 = new JLabel("Food So Good, It's Worth the Wait... Not! Fresh, Hot, and Right Now!");
         L2.setFont(f2);
         L2.setForeground(Color.black);
 
         imageLabel.setBounds(500, 70, 500, 500);
-        L1.setBounds(560, 500, 1000, 50);
-        L2.setBounds(450, 580, 1500, 40);
+        L1.setBounds(555, 500, 1000, 50);
+        L2.setBounds(440, 580, 1500, 40);
 
         background.add(imageLabel);
         background.add(L1);

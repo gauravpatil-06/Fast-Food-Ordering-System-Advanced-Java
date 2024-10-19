@@ -1,7 +1,6 @@
 package com.fastfood.delivery.ui;
 
 import com.fastfood.delivery.model.RoundedButton;
-import com.fastfood.delivery.model.RoundedTextField;
 import com.fastfood.delivery.model.RoundedTextField_Black;
 
 import javax.swing.*;
@@ -257,6 +256,8 @@ public class OrderDetailsPage extends JFrame
         c.add(confirm_order);   c.add(clear);
 
         setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        setSize(screenSize.width, screenSize.height);
     }
 
     // Method to insert order data into the database
@@ -293,7 +294,5 @@ public class OrderDetailsPage extends JFrame
         f1.setVisible(true);
         f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f1.setTitle("Fast Food Delivery");
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-        f1.setSize(screenSize.width, screenSize.height);
     }
 }

@@ -1,5 +1,7 @@
+package com.fastfood.delivery.ui;
+
 import com.fastfood.delivery.model.RoundedButton;
-import com.fastfood.delivery.model.RoundedTextField;
+import com.fastfood.delivery.model.RoundedTextField;;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -47,7 +49,6 @@ public class LoginPage extends JFrame
 
         ImageIcon user = new ImageIcon("src/resources/logo_username.png");
         JLabel imageLabel_user = new JLabel(new ImageIcon(user.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
-
         L2 = new JLabel("Username:", JLabel.RIGHT);
         L2.setFont(f2);
         L2.setForeground(Color.black);

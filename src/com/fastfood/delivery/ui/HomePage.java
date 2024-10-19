@@ -1,11 +1,9 @@
+package com.fastfood.delivery.ui;
+
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionListener;
 import java.sql.*;
-import com.fastfood.delivery.ui.Home;
-import com.fastfood.delivery.ui.OrderHistory;
-import com.fastfood.delivery.ui.MyProfile;
-import com.fastfood.delivery.ui.AboutUs;
-import com.fastfood.delivery.ui.ContactUs;
 
 public class HomePage extends JFrame
 {

@@ -232,9 +232,19 @@ public class Home extends JPanel
         purchase.setFont(f5);
         card.add(purchase);
 
+        // Add ActionListener to the purchase button
+        purchase.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                // Open the OrderDetailsPage frame when Purchase button is clicked
+                new OrderDetailsPage();
+            }
+        });
+
         return card;
     }
-
 
     public static void main(String args[])
     {
