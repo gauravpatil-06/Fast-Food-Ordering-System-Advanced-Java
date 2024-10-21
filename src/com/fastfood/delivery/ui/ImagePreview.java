@@ -11,32 +11,33 @@ import java.io.IOException;
 
 public class ImagePreview extends JComponent implements ChangeListener
 {
-    private JFileChooser fileChooser;
-    private ImageIcon thumbnail;
-    private File file;
+    private JFileChooser fileChooser; // File chooser reference
+    private ImageIcon thumbnail; // Thumbnail image
+    private File file; // Selected file
 
-    public ImagePreview(JFileChooser fileChooser) {
+    public ImagePreview(JFileChooser fileChooser)
+    {
         this.fileChooser = fileChooser;
-        this.fileChooser.addPropertyChangeListener(evt ->
+        this.fileChooser.addPropertyChangeListener(evt -> // Listener for file chooser changes
         {
             boolean update = false;
 
-            if (JFileChooser.DIRECTORY_CHANGED_PROPERTY.equals(evt.getPropertyName()))
+            if (JFileChooser.DIRECTORY_CHANGED_PROPERTY.equals(evt.getPropertyName())) // Directory changed
             {
-                file = null;
+                file = null; // Clear file
                 update = true;
             }
-            else if (JFileChooser.SELECTED_FILE_CHANGED_PROPERTY.equals(evt.getPropertyName()))
+            else if (JFileChooser.SELECTED_FILE_CHANGED_PROPERTY.equals(evt.getPropertyName())) // File selected
             {
                 file = (File) evt.getNewValue();
                 update = true;
             }
             if (update)
             {
-                if (isShowing())
+                if (isShowing()) // If visible
                 {
-                    loadImage();
-                    repaint();
+                    loadImage(); // Load image
+                    repaint(); // Refresh
                 }
             }
         });
@@ -45,8 +46,9 @@ public class ImagePreview extends JComponent implements ChangeListener
 
     private void loadImage()
     {
-        if (file == null) {
-            thumbnail = null;
+        if (file == null) // No file selected
+        {
+            thumbnail = null; // Clear thumbnail
             return;
         }
 
@@ -56,44 +58,44 @@ public class ImagePreview extends JComponent implements ChangeListener
             BufferedImage img = ImageIO.read(file);
             if (img != null)
             {
-                thumbnail = new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH));
+                thumbnail = new ImageIcon(img.getScaledInstance(200, 200, Image.SCALE_SMOOTH)); // Scale image
             }
         }
-        catch (IOException e)
+        catch (IOException e) // Handle errors
         {
-            thumbnail = null;
+            thumbnail = null; // Clear thumbnail on error
         }
     }
 
     @Override
     protected void paintComponent(Graphics g)
     {
-        if (thumbnail == null)
+        if (thumbnail == null) // Load if not already loaded
         {
             loadImage();
         }
-        if (thumbnail != null)
+        if (thumbnail != null) // Draw thumbnail
         {
-            int x = getWidth() / 2 - thumbnail.getIconWidth() / 2;
-            int y = getHeight() / 2 - thumbnail.getIconHeight() / 2;
+            int x = getWidth() / 2 - thumbnail.getIconWidth() / 2; // Center X
+            int y = getHeight() / 2 - thumbnail.getIconHeight() / 2; // Center Y
 
-            if (y < 0)
+            if (y < 0) // Adjust Y if needed
             {
                 y = 0;
             }
 
-            thumbnail.paintIcon(this, g, x, y);
+            thumbnail.paintIcon(this, g, x, y); // Paint icon
         }
     }
 
     @Override
-    public void stateChanged(ChangeEvent e)
+    public void stateChanged(ChangeEvent e) // Update on state change
     {
-        file = fileChooser.getSelectedFile();
-        if (isShowing())
+        file = fileChooser.getSelectedFile(); // Get selected file
+        if (isShowing()) // If visible
         {
-            loadImage();
-            repaint();
+            loadImage(); // Load image
+            repaint(); // Refresh
         }
     }
 }

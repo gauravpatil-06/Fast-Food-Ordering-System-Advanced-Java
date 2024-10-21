@@ -189,4 +189,15 @@ public class ContactUs extends JPanel
         add(L7);
         add(L8);
     }
+    public static void main(String[] args)
+    {
+        JFrame frame = new JFrame("Fast Food Delivery");
+        ContactUs contactUs = new ContactUs();
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(contactUs);
+        frame.setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize.width, screenSize.height);
+    }
 }

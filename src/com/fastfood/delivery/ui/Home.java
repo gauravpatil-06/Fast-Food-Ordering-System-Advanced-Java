@@ -1,12 +1,9 @@
 package com.fastfood.delivery.ui;
 
-import com.fastfood.delivery.model.RoundedButton;
 import com.fastfood.delivery.model.RoundedButton_Blue;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.awt.geom.RoundRectangle2D;
 
 public class Home extends JPanel
 {
@@ -35,7 +32,7 @@ public class Home extends JPanel
         card4.setBounds(1144, 30, 350, 460);
         add(card4);
 
-// Next Line
+        // Next Line
         JPanel card5 = createCard("src/resources/card_images/Momos.jpg", "Momos", "₹ 100", "30% OFF", "4.1 ★", "Purchase");
         card5.setBounds(20, 529, 350, 460);
         add(card5);
@@ -52,7 +49,7 @@ public class Home extends JPanel
         card8.setBounds(1144, 529, 350, 460);
         add(card8);
 
-// Next Line
+        // Next Line
         JPanel card9 = createCard("src/resources/card_images/Nachos Cheese.jpg", "Nachos Cheese", "₹ 180", "18% OFF", "4.0 ★", "Purchase");
         card9.setBounds(20, 1029, 350, 460);
         add(card9);
@@ -69,7 +66,7 @@ public class Home extends JPanel
         card12.setBounds(1144, 1029, 350, 460);
         add(card12);
 
-// Next Line
+        // Next Line
         JPanel card13 = createCard("src/resources/card_images/Paneer Biryani.jpg", "Paneer Biryani", "₹ 320", "18% OFF", "4.5 ★", "Purchase");
         card13.setBounds(20, 1529, 350, 460);
         add(card13);
@@ -86,7 +83,7 @@ public class Home extends JPanel
         card16.setBounds(1144, 1529, 350, 460);
         add(card16);
 
-// Next Line
+        // Next Line
         JPanel card17 = createCard("src/resources/card_images/Vada Pav.jpg", "Vada Pav", "₹ 30", "25% OFF", "4.0 ★", "Purchase");
         card17.setBounds(20, 2029, 350, 460);
         add(card17);
@@ -103,7 +100,7 @@ public class Home extends JPanel
         card20.setBounds(1144, 2029, 350, 460);
         add(card20);
 
-// Next Line
+        // Next Line
         JPanel card21 = createCard("src/resources/card_images/Cake.jpg", "Cake", "₹ 350", "20% OFF", "4.5 ★", "Purchase");
         card21.setBounds(20, 2529, 350, 460);
         add(card21);
@@ -120,7 +117,7 @@ public class Home extends JPanel
         card24.setBounds(1144, 2529, 350, 460);
         add(card24);
 
-// Next Line
+        // Next Line
         JPanel card25 = createCard("src/resources/card_images/Rasgulla.jpg", "Rasgulla", "₹ 100", "20% OFF", "4.5 ★", "Purchase");
         card25.setBounds(20, 3029, 350, 460);
         add(card25);
@@ -137,7 +134,7 @@ public class Home extends JPanel
         card28.setBounds(1144, 3029, 350, 460);
         add(card28);
 
-// Next Line
+        // Next Line
         JPanel card29 = createCard("src/resources/card_images/Lemon Iced Tea.jpg", "Lemon Iced Tea", "₹ 80", "12% OFF", "4.1 ★", "Purchase");
         card29.setBounds(20, 3529, 350, 460);
         add(card29);
@@ -159,10 +156,13 @@ public class Home extends JPanel
         setPreferredSize(new Dimension(1500, 4070)); // Width should accommodate all cards
     }
 
-    private JPanel createCard(String imagePath, String foodnametext, String pricetext, String discounttext, String ratingtext, String purchasetext) {
-        JPanel card = new JPanel() {
+    private JPanel createCard(String imagePath, String foodnametext, String pricetext, String discounttext, String ratingtext, String purchasetext)
+    {
+        JPanel card = new JPanel()
+        {
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g)
+            {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -222,9 +222,11 @@ public class Home extends JPanel
         card.add(purchase);
 
         // Pass food name and price to OrderDetailsPage when Purchase is clicked
-        purchase.addActionListener(new ActionListener() {
+        purchase.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 new OrderDetailsPage(foodnametext, pricetext);
             }
         });

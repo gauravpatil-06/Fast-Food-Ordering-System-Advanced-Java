@@ -9,7 +9,8 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class OrderDetailsPage extends JFrame {
+public class OrderDetailsPage extends JFrame
+{
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String DB_USER = "system";
     private static final String DB_PASSWORD = "gaurav";
@@ -19,7 +20,8 @@ public class OrderDetailsPage extends JFrame {
             quantityField, paymentMethodField, deliveryTimeField;
     RoundedButton confirm_order, clear;
 
-    OrderDetailsPage(String foodnametext, String pricetext) {
+    OrderDetailsPage(String foodnametext, String pricetext)
+    {
         Container c = getContentPane();
         c.setLayout(null);
         c.setBackground(new Color(255, 250, 205)); // Faint Lemon Yellow
@@ -227,22 +229,19 @@ public class OrderDetailsPage extends JFrame {
         });
 
         c.add(title);
-        c.add(imageLabel_name);       c.add(full_name);       c.add(nameField);
-        c.add(imageLabel_mobile_no); c.add(phone_no);        c.add(phoneField);
-        c.add(imageLabel_email_id); c.add(email_id);        c.add(emailField);
-        c.add(imageLabel_address); c.add(address);         c.add(addressField);
-        c.add(imageLabel_foodItem); c.add(food_Item );      c.add(foodItemField);
-        c.add(imageLabel_food_price); c.add(price);           c.add(priceField);
+        c.add(imageLabel_name);          c.add(full_name);       c.add(nameField);
+        c.add(imageLabel_mobile_no);     c.add(phone_no);        c.add(phoneField);
+        c.add(imageLabel_email_id);      c.add(email_id);        c.add(emailField);
+        c.add(imageLabel_address);       c.add(address);         c.add(addressField);
+        c.add(imageLabel_foodItem);      c.add(food_Item );      c.add(foodItemField);
+        c.add(imageLabel_food_price);    c.add(price);           c.add(priceField);
         c.add(imageLabel_food_quantity); c.add(quantity);        c.add(quantityField);
         c.add(imageLabel_paymentmethod); c.add(payment_method ); c.add(paymentMethodField);
-        c.add(imageLabel_deliverytime); c.add(delivery_time);   c.add(deliveryTimeField);
-        c.add(confirm_order);   c.add(clear);
+        c.add(imageLabel_deliverytime);  c.add(delivery_time);   c.add(deliveryTimeField);
+        c.add(confirm_order);            c.add(clear);
 
         // Frame settings
         setTitle("Fast Food Delivery");
-        setSize(1400, 800);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
     }
@@ -291,19 +290,16 @@ public class OrderDetailsPage extends JFrame {
             JOptionPane.showMessageDialog(null, "Invalid number format for price or quantity.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-
     // Method to validate the price input
     private boolean isValidPrice(String price)
     {
         // Check if the price starts with "₹" and is followed by digits (allowing for decimals)
         return price.matches("^₹ \\d+(\\.\\d+)?$");
     }
-
-
-
     public static void main(String[] args)
     {
-        // Example usage
-        new OrderDetailsPage("Pizza", "₹ 200");
+        OrderDetailsPage f1 = new OrderDetailsPage("Pizza", "₹ 200");
+        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        f1.setVisible(true);
     }
 }

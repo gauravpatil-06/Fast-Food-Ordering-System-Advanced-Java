@@ -194,4 +194,15 @@ public class AboutUs extends JPanel
         // Set the preferred size of the panel (based on content height)
         setPreferredSize(new Dimension(1500, 1150));
     }
+    public static void main(String[] args)
+    {
+        JFrame frame = new JFrame("Fast Food Delivery");
+        AboutUs aboutUs = new AboutUs();
+
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.add(aboutUs);
+        frame.setVisible(true);
+        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+        frame.setSize(screenSize.width, screenSize.height);
+    }
 }

@@ -17,6 +17,7 @@ import java.sql.*;
 
 public class MyProfile extends JPanel
 {
+    // Database connection details
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String DB_USER = "system";
     private static final String DB_PASSWORD = "gaurav";

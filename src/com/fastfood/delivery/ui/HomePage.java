@@ -2,17 +2,19 @@ package com.fastfood.delivery.ui;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class HomePage extends JFrame {
+public class HomePage extends JFrame
+{
+    // Database connection details
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String DB_USER = "system";
     private static final String DB_PASSWORD = "gaurav";
 
     private OrderHistory orderHistory;  // Declare OrderHistory as a class member
 
-    HomePage(String username) {
+    HomePage(String username)
+    {
         Container c = getContentPane();
 
         Font f1 = new Font("Arial Black", Font.BOLD, 20);
@@ -20,10 +22,11 @@ public class HomePage extends JFrame {
         JTabbedPane jtp = new JTabbedPane();
         jtp.setFont(f1);
 
-        UserData userData = getUserData(username);  // Fetch data for the logged-in/registered user
+        UserData userData = getUserData(username); // Fetch data for the logged-in/registered user
 
         // Check if userData is not null
-        if (userData != null) {
+        if (userData != null)
+        {
             Home home = new Home();
             orderHistory = new OrderHistory();  // Initialize OrderHistory
             MyProfile myProfile = new MyProfile(userData.getName(), userData.getMobileNo(), userData.getEmailId(), userData.getUsername(), userData.getPassword());
@@ -89,13 +92,15 @@ public class HomePage extends JFrame {
     private UserData getUserData(String username)
     {
         UserData userData = null;
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD))
+        {
             String query = "SELECT * FROM users WHERE username = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next()) {
+            if (rs.next())
+            {
                 String name = rs.getString("name");
                 String mobileNo = rs.getString("mobile_no");
                 String emailId = rs.getString("email_id");
@@ -125,7 +130,8 @@ public class HomePage extends JFrame {
 }
 
 // Class to hold user data
-class UserData {
+class UserData
+{
     private String name, mobileNo, emailId, username, password;
 
     public UserData(String name, String mobileNo, String emailId, String username, String password) {

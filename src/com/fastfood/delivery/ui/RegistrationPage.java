@@ -38,6 +38,7 @@ public class RegistrationPage extends JFrame
         background.setSize(bg_login_screenSize.width, bg_login_screenSize.height);
         c.add(background);
 
+        //back icon
         ImageIcon back = new ImageIcon("src/resources/icon_back.png");
         JLabel imageLabel_back = new JLabel(new ImageIcon(back.getImage().getScaledInstance(40, 40, Image.SCALE_SMOOTH)));
 
@@ -201,10 +202,10 @@ public class RegistrationPage extends JFrame
                     boolean success = registerUser(name, mobile_no, email_id, username, password);
                     if (success)
                     {
-                        // After successful registration, open HomePage with the registered username
-                        HomePage homePage = new HomePage(username);  // Pass the registered username
+
+                        HomePage homePage = new HomePage(username);
                         homePage.setVisible(true);
-                        dispose();  // Close the registration page
+                        dispose();
                     }
                 }
             }
@@ -215,23 +216,23 @@ public class RegistrationPage extends JFrame
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                Object source = e.getSource(); // Get the source of the event
+                Object source = e.getSource();
 
                 if (source == tf1)
                 {
-                    tf2.requestFocus(); // Move to Mobile No. field
+                    tf2.requestFocus();
                 } else if (source == tf2)
                 {
-                    tf3.requestFocus(); // Move to Email ID field
+                    tf3.requestFocus();
                 } else if (source == tf3)
                 {
-                    tf4.requestFocus(); // Move to Username field
+                    tf4.requestFocus();
                 } else if (source == tf4)
                 {
-                    tf5.requestFocus(); // Move to Password field
+                    tf5.requestFocus();
                 } else if (source == tf5)
                 {
-                    b1.doClick(); // Simulate clicking the Register button
+                    b1.doClick();
                 }
             }
         };

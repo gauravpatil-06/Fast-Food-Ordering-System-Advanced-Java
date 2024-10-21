@@ -11,7 +11,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
-public class OrderHistory extends JPanel {
+public class OrderHistory extends JPanel
+{
     // Database connection details (Update as per your database configuration)
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe"; // Replace with your DB URL
     private static final String DB_USER = "system"; // Replace with your DB username
@@ -74,11 +75,11 @@ public class OrderHistory extends JPanel {
                 cardCount++;
 
                 // Start a new row if three cards are added in a row
-                if (cardCount % 3 == 0) {
+                if (cardCount % 3 == 0)
+                {
                     cardPositionX = 20; // Reset to initial x position
                     cardPositionY += cardHeight + 50; // Move down for the next row
                 }
-
             }
             // Set the preferred size of the panel based on the number of cards added
             int preferredHeight = cardPositionY + 50; // Adding 50 pixels at the bottom
@@ -89,17 +90,21 @@ public class OrderHistory extends JPanel {
             pstmt.close();
             conn.close();
 
-        } catch (Exception ex) {
+        } catch (Exception ex)
+        {
             ex.printStackTrace();
         }
     }
 
     // Method to create a card with order details
     private JPanel createCard(int orderId, String fullName, String phoneNumber, String email, String address,
-                              String foodItem, String price, int quantity, String paymentMethod, String deliveryTime) {
-        JPanel card = new JPanel() {
+                              String foodItem, String price, int quantity, String paymentMethod, String deliveryTime)
+    {
+        JPanel card = new JPanel()
+        {
             @Override
-            protected void paintComponent(Graphics g) {
+            protected void paintComponent(Graphics g)
+            {
                 super.paintComponent(g);
                 Graphics2D g2 = (Graphics2D) g;
                 g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
@@ -117,7 +122,8 @@ public class OrderHistory extends JPanel {
         // Add the order details to the card
         JLabel imageLabel = new JLabel();
         ImageIcon icon = getImageForFoodItem(foodItem); // Get image based on food item name
-        if (icon != null) {
+        if (icon != null)
+        {
             Image img = icon.getImage();
             Image scaledImg = img.getScaledInstance(464, 306, Image.SCALE_SMOOTH); // Resize image slightly smaller
             imageLabel.setIcon(new ImageIcon(scaledImg));
@@ -176,12 +182,15 @@ public class OrderHistory extends JPanel {
         card.add(cancelOrderButton);
 
         // Add action listener to the cancel button
-        cancelOrderButton.addActionListener(new ActionListener() {
+        cancelOrderButton.addActionListener(new ActionListener()
+        {
             @Override
-            public void actionPerformed(ActionEvent e) {
+            public void actionPerformed(ActionEvent e)
+            {
                 // Confirm deletion
                 int response = JOptionPane.showConfirmDialog(null, "Are you sure you want to cancel this order?", "Confirm Cancel", JOptionPane.YES_NO_OPTION);
-                if (response == JOptionPane.YES_OPTION) {
+                if (response == JOptionPane.YES_OPTION)
+                {
                     deleteOrder(orderId); // Call delete method
                     remove(card); // Remove the card from the panel
                     revalidate(); // Refresh the layout
@@ -236,7 +245,7 @@ public class OrderHistory extends JPanel {
         OrderHistory orderHistoryPanel = new OrderHistory();
 
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
+        frame.add(orderHistoryPanel);
         frame.setVisible(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(screenSize.width, screenSize.height);
