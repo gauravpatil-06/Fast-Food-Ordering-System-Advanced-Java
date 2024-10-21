@@ -5,13 +5,14 @@ import java.awt.*;
 import java.awt.event.ActionListener;
 import java.sql.*;
 
-public class HomePage extends JFrame
-{
+public class HomePage extends JFrame {
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String DB_USER = "system";
     private static final String DB_PASSWORD = "gaurav";
-    HomePage(String username)
-    {
+
+    private OrderHistory orderHistory;  // Declare OrderHistory as a class member
+
+    HomePage(String username) {
         Container c = getContentPane();
 
         Font f1 = new Font("Arial Black", Font.BOLD, 20);
@@ -22,24 +23,33 @@ public class HomePage extends JFrame
         UserData userData = getUserData(username);  // Fetch data for the logged-in/registered user
 
         // Check if userData is not null
-        if (userData != null)
-        {
+        if (userData != null) {
             Home home = new Home();
-            OrderHistory orderHistory = new OrderHistory();
+            orderHistory = new OrderHistory();  // Initialize OrderHistory
             MyProfile myProfile = new MyProfile(userData.getName(), userData.getMobileNo(), userData.getEmailId(), userData.getUsername(), userData.getPassword());
             AboutUs aboutUs = new AboutUs();
             ContactUs contactUs = new ContactUs();
 
+            // Create a scroll pane for the Home panel
+            JScrollPane scrollPane1 = new JScrollPane(home);
+            scrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane1.getVerticalScrollBar().setUnitIncrement(16); // Smooth scrolling
+
+            // Create a scroll pane for the Order History panel
+            JScrollPane scrollPane2 = new JScrollPane(orderHistory);
+            scrollPane2.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane2.getVerticalScrollBar().setUnitIncrement(16); // Smooth scrolling
+
             // Create a scroll pane for the AboutUs panel
-            JScrollPane scrollPane = new JScrollPane(aboutUs);
-            scrollPane.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
-            scrollPane.getVerticalScrollBar().setUnitIncrement(16); // Smooth scrolling
+            JScrollPane scrollPane3 = new JScrollPane(aboutUs);
+            scrollPane3.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+            scrollPane3.getVerticalScrollBar().setUnitIncrement(16); // Smooth scrolling
 
             // Add tabs to the tabbed pane
-            jtp.addTab("Home", home);
-            jtp.addTab("Order History", orderHistory);
+            jtp.addTab("Home", scrollPane1);
+            jtp.addTab("Order History", scrollPane2);
             jtp.addTab("My Profile", myProfile);
-            jtp.addTab("About Us", scrollPane);  // Add scroll pane for About Us
+            jtp.addTab("About Us", scrollPane3);  // Add scroll pane for About Us
             jtp.addTab("Contact Us", contactUs);
 
             // Set background colors for each tab
@@ -79,15 +89,13 @@ public class HomePage extends JFrame
     private UserData getUserData(String username)
     {
         UserData userData = null;
-        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD))
-        {
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD)) {
             String query = "SELECT * FROM users WHERE username = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, username);
             ResultSet rs = stmt.executeQuery();
 
-            if (rs.next())
-            {
+            if (rs.next()) {
                 String name = rs.getString("name");
                 String mobileNo = rs.getString("mobile_no");
                 String emailId = rs.getString("email_id");
@@ -100,6 +108,14 @@ public class HomePage extends JFrame
         }
         return userData;
     }
+
+    public void refreshOrderHistory()
+    {
+        if (orderHistory != null) {
+            orderHistory.refreshOrder(); // Call refresh method on OrderHistory
+        }
+    }
+
     public static void main(String args[])
     {
         HomePage f1 = new HomePage("Gaurav123");
@@ -109,8 +125,7 @@ public class HomePage extends JFrame
 }
 
 // Class to hold user data
-class UserData
-{
+class UserData {
     private String name, mobileNo, emailId, username, password;
 
     public UserData(String name, String mobileNo, String emailId, String username, String password) {

@@ -217,30 +217,21 @@ public class RegistrationPage extends JFrame
             {
                 Object source = e.getSource(); // Get the source of the event
 
-                switch (source.getClass().getSimpleName())
+                if (source == tf1)
                 {
-                    case "RoundedTextField_Register":
-                        if (source == tf1)
-                        {
-                            tf2.requestFocus(); // Move to Mobile No. field
-                        }
-                        else if (source == tf2)
-                        {
-                            tf3.requestFocus(); // Move to Email ID field
-                        }
-                        else if (source == tf3)
-                        {
-                            tf4.requestFocus(); // Move to Username field
-                        }
-                        else if (source == tf4)
-                        {
-                            tf5.requestFocus(); // Move to Password field
-                        }
-                        else if (source == tf5)
-                        {
-                            b1.doClick(); // Simulate clicking the Register button
-                        }
-                        break;
+                    tf2.requestFocus(); // Move to Mobile No. field
+                } else if (source == tf2)
+                {
+                    tf3.requestFocus(); // Move to Email ID field
+                } else if (source == tf3)
+                {
+                    tf4.requestFocus(); // Move to Username field
+                } else if (source == tf4)
+                {
+                    tf5.requestFocus(); // Move to Password field
+                } else if (source == tf5)
+                {
+                    b1.doClick(); // Simulate clicking the Register button
                 }
             }
         };

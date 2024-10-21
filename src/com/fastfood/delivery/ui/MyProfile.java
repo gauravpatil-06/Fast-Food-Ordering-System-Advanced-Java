@@ -210,6 +210,18 @@ public class MyProfile extends JPanel
                 }
             }
         });
+        b3.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                // Close the current MyProfile JPanel
+                JFrame topFrame = (JFrame) SwingUtilities.getWindowAncestor(MyProfile.this);
+                topFrame.dispose(); // Close the current frame
+
+                // Open the login page
+                LoginPage loginPage = new LoginPage(); // Assuming you have a LoginPage class
+                loginPage.setVisible(true);
+            }
+        });
 
         add(L1);
         add(imageLabel_profile);
@@ -232,10 +244,39 @@ public class MyProfile extends JPanel
         add(b2);
         add(b3);
 
+        ActionListener actionListener = new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                Object source = e.getSource(); // Get the source of the event
+
+                if (source == tf1)
+                {
+                    tf2.requestFocus(); // Move to Mobile No. field
+                } else if (source == tf2)
+                {
+                    tf3.requestFocus(); // Move to Email ID field
+                } else if (source == tf3)
+                {
+                    tf4.requestFocus(); // Move to Username field
+                } else if (source == tf4)
+                {
+                    tf5.requestFocus(); // Move to Password field
+                } else if (source == tf5)
+                {
+                    b1.doClick(); // Simulate clicking the Register button
+                }
+            }
+        };
+
+        tf1.addActionListener(actionListener);
+        tf2.addActionListener(actionListener);
+        tf3.addActionListener(actionListener);
+        tf4.addActionListener(actionListener);
+        tf5.addActionListener(actionListener);
+
     }
-
-
-
     // Method to create a rounded profile picture
     public ImageIcon getRoundedProfilePic(ImageIcon icon, int width, int height)
     {

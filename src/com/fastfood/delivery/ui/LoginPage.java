@@ -1,6 +1,7 @@
 package com.fastfood.delivery.ui;
 
 import com.fastfood.delivery.model.RoundedButton;
+import com.fastfood.delivery.model.RoundedJPasswordField;
 import com.fastfood.delivery.model.RoundedTextField;;
 
 import javax.swing.*;
@@ -12,8 +13,10 @@ import java.sql.*;
 public class LoginPage extends JFrame
 {
     JLabel L1, L2, L3;
-    RoundedTextField tf1, tf2;
+    RoundedTextField tf1;
+    RoundedJPasswordField tf2;
     RoundedButton b1, b2;
+    JCheckBox showPasswordCheckbox;
 
     // Database connection details
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
@@ -28,6 +31,7 @@ public class LoginPage extends JFrame
         Font f1 = new Font("Arial Black", Font.BOLD, 45);
         Font f2 = new Font("adamina", Font.BOLD, 25);
         Font f3 = new Font("Arial Black", Font.BOLD, 25);
+        Font f4 = new Font("adamina", Font.BOLD, 16);
 
         ImageIcon icon = new ImageIcon("src/resources/bg_login_page.png");
         Dimension bg_login_screenSize = Toolkit.getDefaultToolkit().getScreenSize();
@@ -66,11 +70,33 @@ public class LoginPage extends JFrame
         L3.setFont(f2);
         L3.setForeground(Color.black);
 
-        tf2 = new RoundedTextField(16);
+        tf2 = new RoundedJPasswordField(16);
         tf2.setFont(f2);
 
         Border tf2_round = BorderFactory.createLineBorder(Color.blue, 1);
         tf2.setBorder(BorderFactory.createCompoundBorder(tf2_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
+
+        showPasswordCheckbox = new JCheckBox("Show Password");
+        showPasswordCheckbox.setFont(f4);
+        showPasswordCheckbox.setForeground(Color.black);
+        showPasswordCheckbox.setOpaque(false); // Make the checkbox background transparent
+
+// Add action listener to the checkbox
+        showPasswordCheckbox.addActionListener(new ActionListener()
+        {
+            @Override
+            public void actionPerformed(ActionEvent e)
+            {
+                if (showPasswordCheckbox.isSelected())
+                {
+                    tf2.setEchoChar((char) 0); // Show the password
+                }
+                else
+                {
+                    tf2.setEchoChar('*'); // Hide the password
+                }
+            }
+        });
 
         b1 = new RoundedButton("Login", 20);
         b1.setFont(f3);
@@ -92,6 +118,7 @@ public class LoginPage extends JFrame
         imageLabel_pwd.setBounds(530, 500, 40, 40);
         L3.setBounds(410, 500, 300, 40);
         tf2.setBounds(740, 500, 250, 40);
+        showPasswordCheckbox.setBounds(830, 545, 200, 30);
 
         b1.setBounds(620, 610, 300, 45);
         b2.setBounds(620, 690, 300, 45);
@@ -102,6 +129,7 @@ public class LoginPage extends JFrame
         background.add(L2);background.add(tf1);
         background.add(imageLabel_pwd);
         background.add(L3);background.add(tf2);
+        background.add(showPasswordCheckbox);
         background.add(b1);
         background.add(b2);
 
@@ -162,25 +190,19 @@ public class LoginPage extends JFrame
             public void actionPerformed(ActionEvent e)
             {
                 Object source = e.getSource(); // Get the source of the event
-
-                switch (source.getClass().getSimpleName())
+                if (source == tf1)
                 {
-                    case "RoundedTextField_Login":
-                        if (source == tf1)
-                        {
-                            tf2.requestFocus(); // Move to Password. field
-                        }
-                        else if (source == tf2)
-                        {
-                            b1.doClick(); // Simulate clicking the Login button
-                        }
-                        break;
+                    tf2.requestFocus(); // Move to Password field
+                } else if (source == tf2)
+                {
+                    b1.doClick(); // Simulate clicking the Login button
                 }
             }
         };
 
         tf1.addActionListener(actionListener);
         tf2.addActionListener(actionListener);
+
 
         setTitle("Fast Food Delivery");
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();

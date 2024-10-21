@@ -9,21 +9,19 @@ import java.awt.*;
 import java.awt.event.*;
 import java.sql.*;
 
-public class OrderDetailsPage extends JFrame
-{
+public class OrderDetailsPage extends JFrame {
     private static final String DB_URL = "jdbc:oracle:thin:@localhost:1521:xe";
     private static final String DB_USER = "system";
     private static final String DB_PASSWORD = "gaurav";
 
-    JLabel title,full_name,phone_no,email_id,address,food_Item,price,quantity,payment_method,delivery_time;
-    RoundedTextField_Black nameField,phoneField,emailField,addressField,foodItemField,priceField,
-            quantityField,paymentMethodField,deliveryTimeField;
-    RoundedButton confirm_order,clear;
-    OrderDetailsPage()
-    {
+    JLabel title, full_name, phone_no, email_id, address, food_Item, price, quantity, payment_method, delivery_time;
+    RoundedTextField_Black nameField, phoneField, emailField, addressField, foodItemField, priceField,
+            quantityField, paymentMethodField, deliveryTimeField;
+    RoundedButton confirm_order, clear;
+
+    OrderDetailsPage(String foodnametext, String pricetext) {
         Container c = getContentPane();
         c.setLayout(null);
-
         c.setBackground(new Color(255, 250, 205)); // Faint Lemon Yellow
 
         Font f1 = new Font("Arial Black", Font.BOLD, 45);
@@ -87,6 +85,7 @@ public class OrderDetailsPage extends JFrame
         food_Item.setForeground(Color.black);
         foodItemField = new RoundedTextField_Black(16);
         foodItemField.setFont(f2);
+        foodItemField.setText(foodnametext);
         Border foodItem_round = BorderFactory.createLineBorder(Color.black, 1);
         foodItemField.setBorder(BorderFactory.createCompoundBorder(foodItem_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
 
@@ -98,6 +97,7 @@ public class OrderDetailsPage extends JFrame
         price.setForeground(Color.black);
         priceField = new RoundedTextField_Black(16);
         priceField.setFont(f2);
+        priceField.setText(pricetext);
         Border food_price_round = BorderFactory.createLineBorder(Color.black, 1);
         priceField.setBorder(BorderFactory.createCompoundBorder(food_price_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
 
@@ -134,17 +134,16 @@ public class OrderDetailsPage extends JFrame
         Border deliverytime_round = BorderFactory.createLineBorder(Color.black, 1);
         deliveryTimeField.setBorder(BorderFactory.createCompoundBorder(deliverytime_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
 
-
-        confirm_order = new RoundedButton("Confirm Order",20);
+        // Buttons
+        confirm_order = new RoundedButton("Confirm Order", 20);
         confirm_order.setForeground(Color.WHITE);
         confirm_order.setFont(f3);
-        confirm_order.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        confirm_order.setBackground(Color.BLUE);
 
-        clear = new RoundedButton("Clear",20);
+        clear = new RoundedButton("Clear", 20);
         clear.setForeground(Color.WHITE);
         clear.setFont(f3);
-        clear.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-
+        clear.setBackground(Color.RED);
 
         // Set bounds for components
         title.setBounds(500, 70, 500, 60);
@@ -188,6 +187,7 @@ public class OrderDetailsPage extends JFrame
         confirm_order.setBounds(450, 650, 300, 50);
         clear.setBounds(800, 650, 300, 50);
 
+
         // Adding button actions
         confirm_order.addActionListener(new ActionListener()
         {
@@ -200,25 +200,10 @@ public class OrderDetailsPage extends JFrame
                         quantityField.getText().isEmpty() || paymentMethodField.getText().isEmpty() ||
                         deliveryTimeField.getText().isEmpty())
                 {
-
                     JOptionPane.showMessageDialog(null, "All fields must be filled!", "Validation Error", JOptionPane.WARNING_MESSAGE);
                 }
                 else
                 {
-                    // If all fields are filled, show order summary and insert data into the database
-                    String orderSummary = "Order Summary:\n";
-                    orderSummary += "Full Name: " + nameField.getText() + "\n";
-                    orderSummary += "Phone Number: " + phoneField.getText() + "\n";
-                    orderSummary += "Email: " + emailField.getText() + "\n";
-                    orderSummary += "Address: " + addressField.getText() + "\n";
-                    orderSummary += "Food Item: " + foodItemField.getText() + "\n";
-                    orderSummary += "Price: " + priceField.getText() + "\n";
-                    orderSummary += "Quantity: " + quantityField.getText() + "\n";
-                    orderSummary += "Payment Method: " + paymentMethodField.getText() + "\n";
-                    orderSummary += "Delivery Time: " + deliveryTimeField.getText() + "\n";
-
-                    JOptionPane.showMessageDialog(null, orderSummary, "Order Confirmed", JOptionPane.INFORMATION_MESSAGE);
-
                     // Insert order data into the database
                     insertOrderData(nameField.getText(), phoneField.getText(), emailField.getText(), addressField.getText(),
                             foodItemField.getText(), priceField.getText(), Integer.parseInt(quantityField.getText()),
@@ -227,10 +212,8 @@ public class OrderDetailsPage extends JFrame
             }
         });
 
-        clear.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
+        clear.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
                 nameField.setText("");
                 phoneField.setText("");
                 emailField.setText("");
@@ -255,44 +238,72 @@ public class OrderDetailsPage extends JFrame
         c.add(imageLabel_deliverytime); c.add(delivery_time);   c.add(deliveryTimeField);
         c.add(confirm_order);   c.add(clear);
 
+        // Frame settings
+        setTitle("Fast Food Delivery");
+        setSize(1400, 800);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setVisible(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         setSize(screenSize.width, screenSize.height);
     }
 
-    // Method to insert order data into the database
     private void insertOrderData(String fullName, String phoneNumber, String email, String address, String foodItem,
-                                 String price, int quantity, String paymentMethod, String deliveryTime) {
-        try {
-            Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD);
+                                 String price, int quantity, String paymentMethod, String deliveryTime)
+    {
+        // Check if the price starts with "₹" and contains only digits after that
+        if (!isValidPrice(price))
+        {
+            JOptionPane.showMessageDialog(null, "Invalid price format. Please enter a valid price starting with '₹'.", "Validation Error", JOptionPane.WARNING_MESSAGE);
+            return; // Exit the method if the price format is invalid
+        }
+
+        // Strip the "₹" symbol to parse the numeric value
+        String cleanedPrice = price.substring(1).trim(); // Remove "₹" from the start
+
+        try (Connection conn = DriverManager.getConnection(DB_URL, DB_USER, DB_PASSWORD))
+        {
             String sql = "INSERT INTO Orders (full_name, phone_number, email, address, food_item, price, quantity, payment_method, delivery_time) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, fullName);
-            pstmt.setString(2, phoneNumber);
-            pstmt.setString(3, email);
-            pstmt.setString(4, address);
-            pstmt.setString(5, foodItem);
-            pstmt.setString(6, price);
-            pstmt.setInt(7, quantity);
-            pstmt.setString(8, paymentMethod);
-            pstmt.setString(9, deliveryTime);
+            try (PreparedStatement pstmt = conn.prepareStatement(sql))
+            {
+                pstmt.setString(1, fullName);
+                pstmt.setString(2, phoneNumber);
+                pstmt.setString(3, email);
+                pstmt.setString(4, address);
+                pstmt.setString(5, foodItem);
+                pstmt.setDouble(6, Double.parseDouble(cleanedPrice)); // Use cleaned price
+                pstmt.setInt(7, quantity);
+                pstmt.setString(8, paymentMethod);
+                pstmt.setString(9, deliveryTime);
 
-            // Execute the update
-            pstmt.executeUpdate();
-
-            // Close the connection
-            pstmt.close();
-            conn.close();
-
-        } catch (Exception ex) {
+                // Execute the update
+                pstmt.executeUpdate();
+                JOptionPane.showMessageDialog(null, "Order Confirmed successfully!!!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                dispose();
+            }
+        }
+        catch (SQLException ex)
+        {
             ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Database error: " + ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
+        } catch (NumberFormatException ex)
+        {
+            ex.printStackTrace();
+            JOptionPane.showMessageDialog(null, "Invalid number format for price or quantity.", "Error", JOptionPane.ERROR_MESSAGE);
         }
     }
-    public static void main(String args[])
+
+    // Method to validate the price input
+    private boolean isValidPrice(String price)
     {
-        OrderDetailsPage f1 = new OrderDetailsPage();
-        f1.setVisible(true);
-        f1.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        f1.setTitle("Fast Food Delivery");
+        // Check if the price starts with "₹" and is followed by digits (allowing for decimals)
+        return price.matches("^₹ \\d+(\\.\\d+)?$");
+    }
+
+
+
+    public static void main(String[] args)
+    {
+        // Example usage
+        new OrderDetailsPage("Pizza", "₹ 200");
     }
 }
