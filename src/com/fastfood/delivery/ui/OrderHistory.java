@@ -244,8 +244,12 @@ public class OrderHistory extends JPanel
         JFrame frame = new JFrame("Fast Food Delivery");
         OrderHistory orderHistoryPanel = new OrderHistory();
 
+        JScrollPane scrollPane1 = new JScrollPane(orderHistoryPanel);
+        scrollPane1.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_ALWAYS);
+        scrollPane1.getVerticalScrollBar().setUnitIncrement(16);
+
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.add(orderHistoryPanel);
+        frame.add(scrollPane1);
         frame.setVisible(true);
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         frame.setSize(screenSize.width, screenSize.height);
