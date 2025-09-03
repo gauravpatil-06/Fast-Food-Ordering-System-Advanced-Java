@@ -147,7 +147,6 @@ public class AboutUs extends JPanel
                     if (choice == 0)
                     {
                         url = "https://www.facebook.com";
-                        L14.setBackground(Color.cyan);
                     }
                     else if (choice == 1)
                     {

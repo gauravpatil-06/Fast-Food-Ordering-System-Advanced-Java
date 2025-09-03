@@ -16,7 +16,7 @@ public class OrderDetailsPage extends JFrame
     private static final String DB_PASSWORD = "gaurav";
 
     JLabel title, full_name, phone_no, email_id, address, food_Item, price, quantity, payment_method, delivery_time;
-    RoundedTextField_Black nameField, phoneField, emailField, addressField, foodItemField, priceField,
+    RoundedTextField_Black nameField, phoneField, emailField, addressField,foodItemField,priceField,
             quantityField, paymentMethodField, deliveryTimeField;
     RoundedButton confirm_order, clear;
 
@@ -100,6 +100,7 @@ public class OrderDetailsPage extends JFrame
         priceField = new RoundedTextField_Black(16);
         priceField.setFont(f2);
         priceField.setText(pricetext);
+
         Border food_price_round = BorderFactory.createLineBorder(Color.black, 1);
         priceField.setBorder(BorderFactory.createCompoundBorder(food_price_round, BorderFactory.createEmptyBorder(4, 4, 4, 4)));
 
@@ -189,8 +190,6 @@ public class OrderDetailsPage extends JFrame
         confirm_order.setBounds(450, 650, 300, 50);
         clear.setBounds(800, 650, 300, 50);
 
-
-        // Adding button actions
         confirm_order.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -204,6 +203,10 @@ public class OrderDetailsPage extends JFrame
                 {
                     JOptionPane.showMessageDialog(null, "All fields must be filled!", "Validation Error", JOptionPane.WARNING_MESSAGE);
                 }
+                else if (Integer.parseInt(quantityField.getText()) <= 0 || quantityField.getText().toString().length() > 100)
+                {
+                    JOptionPane.showMessageDialog(null, "Invalid Quantity!", "Validation Error", JOptionPane.WARNING_MESSAGE);
+                }
                 else
                 {
                     // Insert order data into the database
@@ -214,8 +217,10 @@ public class OrderDetailsPage extends JFrame
             }
         });
 
-        clear.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
+        clear.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent e)
+            {
                 nameField.setText("");
                 phoneField.setText("");
                 emailField.setText("");

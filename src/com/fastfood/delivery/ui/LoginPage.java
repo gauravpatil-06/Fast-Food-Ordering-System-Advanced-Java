@@ -3,7 +3,6 @@ package com.fastfood.delivery.ui;
 import com.fastfood.delivery.model.RoundedButton;
 import com.fastfood.delivery.model.RoundedJPasswordField;
 import com.fastfood.delivery.model.RoundedTextField;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 import java.awt.*;
@@ -165,7 +164,8 @@ public class LoginPage extends JFrame
                         JOptionPane.showMessageDialog(null, "Login Successful", "Success", JOptionPane.INFORMATION_MESSAGE);
                         new HomePage(username).setVisible(true);
                         dispose();
-                    } else
+                    }
+                    else
                     {
                         JOptionPane.showMessageDialog(null, "Invalid username or password", "Error", JOptionPane.ERROR_MESSAGE);
                     }
@@ -194,7 +194,8 @@ public class LoginPage extends JFrame
                 if (source == tf1)
                 {
                     tf2.requestFocus();
-                } else if (source == tf2)
+                }
+                else if (source == tf2)
                 {
                     b1.doClick();
                 }

@@ -151,7 +151,6 @@ public class Home extends JPanel
         card32.setBounds(1144, 3529, 350, 460);
         add(card32);
 
-
         // Set the preferred size of the Home panel
         setPreferredSize(new Dimension(1500, 4070)); // Width should accommodate all cards
     }
@@ -227,7 +226,7 @@ public class Home extends JPanel
             @Override
             public void actionPerformed(ActionEvent e)
             {
-                new OrderDetailsPage(foodnametext, pricetext);
+                new OrderDetailsPage(foodnametext, pricetext).setVisible(true);
             }
         });
 

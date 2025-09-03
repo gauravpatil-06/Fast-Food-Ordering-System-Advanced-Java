@@ -90,7 +90,8 @@ public class OrderHistory extends JPanel
             pstmt.close();
             conn.close();
 
-        } catch (Exception ex)
+        }
+        catch (Exception ex)
         {
             ex.printStackTrace();
         }
@@ -225,11 +226,13 @@ public class OrderHistory extends JPanel
         }
     }
 
-    public void refreshOrder() {
+    public void refreshOrder()
+    {
         removeAll();
         displayOrderHistory(); // Call to repopulate the order history
         revalidate(); // Refresh the UI
         repaint();
+        setPreferredSize(new Dimension(1500, 6000));
     }
 
     // Helper method to get the image based on the food item name

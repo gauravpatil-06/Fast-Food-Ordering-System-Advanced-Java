@@ -116,7 +116,8 @@ public class HomePage extends JFrame
 
     public void refreshOrderHistory()
     {
-        if (orderHistory != null) {
+        if (orderHistory != null)
+        {
             orderHistory.refreshOrder(); // Call refresh method on OrderHistory
         }
     }

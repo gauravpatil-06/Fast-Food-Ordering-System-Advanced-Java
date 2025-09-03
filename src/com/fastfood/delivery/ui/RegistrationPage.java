@@ -202,7 +202,6 @@ public class RegistrationPage extends JFrame
                     boolean success = registerUser(name, mobile_no, email_id, username, password);
                     if (success)
                     {
-
                         HomePage homePage = new HomePage(username);
                         homePage.setVisible(true);
                         dispose();
@@ -265,8 +264,9 @@ public class RegistrationPage extends JFrame
             int rowsInserted = preparedStatement.executeUpdate();
             if (rowsInserted > 0)
             {
-                JOptionPane.showMessageDialog(null, "Registration successfully!!!");
-                return true;  // Indicate success
+                JOptionPane.showMessageDialog(null, "Registration successfully!!!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                new HomePage(username).setVisible(true);
+                dispose();
             }
         }
         catch (SQLException ex)
