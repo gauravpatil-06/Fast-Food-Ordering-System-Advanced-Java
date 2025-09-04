@@ -1,6 +1,6 @@
 🍔 𝗙𝗮𝘀𝘁 𝗙𝗼𝗼𝗱 𝗢𝗿𝗱𝗲𝗿𝗶𝗻𝗴 𝗦𝘆𝘀𝘁𝗲𝗺 – 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗝𝗮𝘃𝗮
 
-🚀 A real-world project developed using Advanced Java. It demonstrates how Java can be applied to create a food delivery application with GUI, database integration, and interactive features. The system focuses on ordering, processing, delivery tracking, and feedback, making it a perfect academic + practical project.
+🚀 A real-world project developed using Advanced Java. It demonstrates how Java can be applied to create a food delivery application with GUI, database integration, and interactive features. The system focuses on ordering, processing, delivery tracking, and feedback, making it a perfect practical project.
 
 🔧 𝗞𝗲𝘆 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀:
 
