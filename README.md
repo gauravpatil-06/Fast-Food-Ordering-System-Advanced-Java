@@ -69,4 +69,97 @@ College canteens, cafés, and food stalls who want a **digital ordering, billing
 ## 🔄 Flowchart
 ![vdfxdxfgvfdxgvfd](https://github.com/user-attachments/assets/94f425a3-f2aa-4b1d-98c6-14a422d87001)
 
+## 📂 Project Directory Structure
+
+```bash
+├── .gitignore
+├── .idea
+│ ├── .gitignore
+│ ├── libraries
+│ │ ├── mysql_connector_java_8_0_11.xml
+│ │ └── ojdbc6_11_2_0_4.xml
+│ ├── misc.xml
+│ ├── modules.xml
+│ ├── uiDesigner.xml
+│ └── vcs.xml
+├── Flipkart.iml
+├── README.md
+└── src
+├── com
+│ └── fastfood
+│ └── delivery
+│ ├── model
+│ │ ├── RoundedButton.java
+│ │ ├── RoundedButton_Blue.java
+│ │ ├── RoundedJPasswordField.java
+│ │ ├── RoundedTextArea.java
+│ │ ├── RoundedTextField.java
+│ │ └── RoundedTextField_Black.java
+│ └── ui
+│ ├── AboutUs.java
+│ ├── ContactUs.java
+│ ├── Home.java
+│ ├── HomePage.java
+│ ├── ImagePreview.java
+│ ├── LoginPage.java
+│ ├── MyProfile.java
+│ ├── OrderDetailsPage.java
+│ ├── OrderHistory.java
+│ ├── RegistrationPage.java
+│ └── SplashScreen.java
+└── resources
+├── bg_login_page.png
+├── bg_registration_page.png
+├── bg_splash.jpeg
+├── card_images
+│ ├── Aloo Tikki.jpg
+│ ├── Apple Pie.jpg
+│ ├── Burger.jpg
+│ ├── Cake.jpg
+│ ├── Calamari Ring.jpg
+│ ├── Cheesecake.jpg
+│ ├── Chicken Biryani.jpg
+│ ├── Coco Cola.jpg
+│ ├── Cold Coffee.jpg
+│ ├── Dhokla.jpg
+│ ├── Fanta.jpg
+│ ├── Fish Tacos.jpg
+│ ├── Fries.jpg
+│ ├── Grilled Prawn.jpg
+│ ├── Gulab Jamun.jpg
+│ ├── Lassi.jpg
+│ ├── Lemon Iced Tea.jpg
+│ ├── Lobster Roll.jpg
+│ ├── Manchurian.jpg
+│ ├── Mango Smoothie.jpg
+│ ├── Milk Shake.jpg
+│ ├── Momos.jpg
+│ ├── Nachos Cheese.jpg
+│ ├── Paneer Biryani.jpg
+│ ├── Pani Puri.jpg
+│ ├── Pasta.jpg
+│ ├── Pepsi.jpg
+│ ├── Pizza.jpg
+│ ├── Rasgulla.jpg
+│ ├── Samosa.jpg
+│ ├── Sandwich.jpg
+│ ├── Tea.jpg
+│ ├── Tiramisu.jpg
+│ └── Vada Pav.jpg
+├── icon_back.png
+├── logo_address.png
+├── logo_email.png
+├── logo_food_name.png
+├── logo_login_page.png
+├── logo_name.png
+├── logo_password.png
+├── logo_payment.png
+├── logo_phone.png
+├── logo_price.png
+├── logo_quantity.jpg
+├── logo_splash.png
+├── logo_time.png
+└── logo_username.png
+
+
 
