@@ -69,6 +69,8 @@ College canteens, cafés, and food stalls who want a **digital ordering, billing
 ## 🔄 Flowchart
 ![vdfxdxfgvfdxgvfd](https://github.com/user-attachments/assets/94f425a3-f2aa-4b1d-98c6-14a422d87001)
 
+<hr style="border:0.5px solid #ccc; width:50%; margin:auto;">
+
 ## 📂 Project Directory Structure
 
 ```bash
