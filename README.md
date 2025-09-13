@@ -77,4 +77,5 @@ College canteens, cafés, and food stalls who want a **digital ordering, billing
 <hr style="border:0.5px solid #ccc; width:50%; margin:auto;">
 
 ## 🔄 Flowchart
-![flow chart for fast food](https://github.com/user-attachments/assets/38eb3061-aa60-4855-a90f-893c7c9dbcff)
+<img src="https://github.com/user-attachments/assets/38eb3061-aa60-4855-a90f-893c7c9dbcff" width="600" />
+
