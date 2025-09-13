@@ -25,6 +25,8 @@ College canteens, cafés, and food stalls who want to provide a digital ordering
 • MVC architecture in desktop apps <br>
 • Form validation & error handling <br>
 
+📸 𝗣𝗿𝗼𝗷𝗲𝗰𝘁 𝗦𝗰𝗿𝗲𝗲𝗻𝘀𝗵𝗼𝘁𝘀:
+
 🔐 𝗔𝘂𝘁𝗵𝗲𝗻𝘁𝗶𝗰𝗮𝘁𝗶𝗼𝗻 𝗜𝗻𝘁𝗲𝗿𝗳𝗮𝗰𝗲 – 𝗦𝗲𝗰𝘂𝗿𝗲 𝗨𝘀𝗲𝗿 𝗟𝗼𝗴𝗶𝗻 𝗦𝘆𝘀𝘁𝗲𝗺
 ![Login Page](https://github.com/user-attachments/assets/8e63ef0b-9614-4e76-9cf6-77c7a42d549b)
 
