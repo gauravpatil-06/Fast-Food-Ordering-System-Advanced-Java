@@ -4,8 +4,7 @@
 
 🔧 𝗞𝗲𝘆 𝗙𝗲𝗮𝘁𝘂𝗿𝗲𝘀:
 
-• 🖥 𝗦𝗽𝗹𝗮𝘀𝗵 & 𝗟𝗼𝗴𝗶𝗻 𝗦𝘆𝘀𝘁𝗲𝗺 – Attractive splash screen, secure login, and registration with validation
-
+• 🖥 𝗦𝗽𝗹𝗮𝘀𝗵 & 𝗟𝗼𝗴𝗶𝗻 𝗦𝘆𝘀𝘁𝗲𝗺 – Attractive splash screen, secure login, and registration with validation <br>
 • 📋 𝗨𝘀𝗲𝗿 𝗣𝗿𝗼𝗳𝗶𝗹𝗲 𝗠𝗮𝗻𝗮𝗴𝗲𝗺𝗲𝗻𝘁 –  Register, update, and manage customer details with photo upload
 
 • 🍟 𝗠𝗲𝗻𝘂 & 𝗢𝗿𝗱𝗲𝗿𝗶𝗻𝗴 – Food cards with images, price, rating, discount, and purchase option
