@@ -66,16 +66,6 @@ College canteens, cafés, and food stalls who want a **digital ordering, billing
 
 <hr style="border:0.5px solid #ccc; width:50%; margin:auto;">
 
-## 📊 Data Flow Diagram (DFD)  
-<img width="1141" height="745" alt="image" src="https://github.com/user-attachments/assets/d4d26678-d8df-49a7-9331-68278478f46d" />  
-
-<hr style="border:0.5px solid #ccc; width:50%; margin:auto;">
-
-## 🖥️ System Block Diagram  
-<img width="957" height="857" alt="image" src="https://github.com/user-attachments/assets/5a16daf8-63a6-4c7f-ac2e-77426d5aa7bf" />  
-
-<hr style="border:0.5px solid #ccc; width:50%; margin:auto;">
-
 ## 🔄 Flowchart
 ![vdfxdxfgvfdxgvfd](https://github.com/user-attachments/assets/94f425a3-f2aa-4b1d-98c6-14a422d87001)
 
