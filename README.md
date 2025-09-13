@@ -1,6 +1,7 @@
 # 🍔 𝗙𝗮𝘀𝘁 𝗙𝗼𝗼𝗱 𝗢𝗿𝗱𝗲𝗿𝗶𝗻𝗴 𝗦𝘆𝘀𝘁𝗲𝗺 – 𝗔𝗱𝘃𝗮𝗻𝗰𝗲𝗱 𝗝𝗮𝘃𝗮  
 
-🚀 A real-world project developed using **Advanced Java (Swing + JDBC)**. It is a simple desktop-based food ordering system where users can browse items, place orders, manage their profile, and track order history.  
+🚀 A real-world project developed using **Advanced Java (Swing + JDBC)**. 
+It is a simple desktop-based food ordering system where users can browse items, place orders, manage their profile, and track order history.  
 
 <hr style="border:0.5px solid #ccc; width:50%; margin:auto;">
 
