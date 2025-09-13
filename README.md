@@ -77,5 +77,5 @@ College canteens, cafés, and food stalls who want a **digital ordering, billing
 <hr style="border:0.5px solid #ccc; width:50%; margin:auto;">
 
 ## 🔄 Flowchart
-![rgfvvds](https://github.com/user-attachments/assets/e4387285-4577-404d-91b1-cf673ca3ea48)
+![vdfxdxfgvfdxgvfd](https://github.com/user-attachments/assets/3b5bafb7-7470-45eb-995e-4379b3c8e8e2)
 
